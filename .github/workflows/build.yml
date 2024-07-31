@@ -32,7 +32,12 @@ jobs:
           node-version: 18
       - name: package install
         run: npm ci
-      - name: build
-        run: |
-          npm run build
-          echo "building"
+      - name: building artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-file
+          path: |
+            dist
+            package.json
+          
+
