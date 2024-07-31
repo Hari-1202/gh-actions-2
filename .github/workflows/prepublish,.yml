@@ -1,0 +1,26 @@
+name: pre_publish
+on: push
+jobs:
+  pre-publish-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: branch checkout
+        uses: actions/checkout@v4
+      - name: node install
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: package install
+        run: npm ci
+      - name: lint fix
+        run: |
+          npm lint
+          echo "checking lint"
+      - name: testing
+        run: |
+          npm test
+          echo "checking tests"
+      - name: build
+        run: |
+          npm build
+          echo "building"
