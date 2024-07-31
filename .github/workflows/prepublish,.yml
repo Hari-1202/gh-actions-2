@@ -24,6 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: pre-publish-job
     steps:
+      - name: branch checkout
+        uses: actions/checkout@v4
+      - name: node install
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: package install
+        run: npm ci
       - name: build
         run: |
           npm run build
