@@ -26,5 +26,5 @@ jobs:
     steps:
       - name: build
         run: |
-          npm build
+          npm run build
           echo "building"
