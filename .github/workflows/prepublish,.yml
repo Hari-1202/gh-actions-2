@@ -1,4 +1,4 @@
-name: pre_publish
+name: build
 on: push
 jobs:
   pre-publish-job:
@@ -14,12 +14,16 @@ jobs:
         run: npm ci
       - name: lint fix
         run: |
-          npm lint
+          npm run lint
           echo "checking lint"
       - name: testing
         run: |
-          npm test
+          npm run test
           echo "checking tests"
+  build:
+    runs-on: ubuntu-latest
+    needs: pre-publish-job
+    steps:
       - name: build
         run: |
           npm build
