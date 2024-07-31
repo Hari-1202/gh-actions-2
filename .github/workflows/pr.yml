@@ -1,0 +1,23 @@
+name: Pr
+on: 
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+    branches:
+      - main
+      - 'dev-*'
+      - 'feat/**'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*'
+      - 'feat/**'
+jobs:
+  pr-handler:
+    runs-on: ubuntu-latest
+    steps:
+      - name: PR or push event
+        run: echo "${{toJSON(github.event)}}"
